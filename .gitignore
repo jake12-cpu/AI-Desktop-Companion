@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Windows
+Thumbs.db
+
+# macOS
+.DS_Store
