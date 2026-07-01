@@ -10,14 +10,16 @@ from PySide6.QtCore import (
     QPropertyAnimation
 )
 from core.message_manager import MessageManager
+from core.ai_worker import AIWorker
 
 
 
 
 class PaimonWidget(QWidget):
 
-    def __init__(self):
+    def __init__(self, client):
         super().__init__()
+        self.client = client
         self.offset = 0
 
         self.direction = 1
@@ -128,12 +130,25 @@ class PaimonWidget(QWidget):
         )
 
     def show_message(self):
-        text = self.message_manager.random_message()
+        self.worker = AIWorker(
+            self.client,
+            "你好"
+        )
 
-        self.message_label.setText(text)
+        self.worker.finished.connect(
+            self.show_ai_reply
+        )
+
+        self.worker.start()
+
+    def show_ai_reply(self, reply):
+
+        self.message_label.setText(reply)
+
         self.message_label.adjustSize()
 
         self.message_label.show()
+
         self.bubble_animation.stop()
 
         self.bubble_animation.setDuration(200)
