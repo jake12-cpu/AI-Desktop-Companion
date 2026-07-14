@@ -69,6 +69,16 @@ class AIClient:
             return "旅行者，请先在设置中填写API Key哦~"
 
         try:
+            print("\n========== 当前发送给AI的Prompt ==========")
+
+            for message in messages:
+                print(
+                    f"{message['role']}:"
+                )
+                print(
+                    message['content']
+                )
+                print("-----------------------------")
 
             response = self.client.chat.completions.create(
 

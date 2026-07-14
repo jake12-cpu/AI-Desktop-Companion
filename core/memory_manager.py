@@ -102,16 +102,15 @@ class MemoryManager:
 
         return self.memories
 
-    def build_memory_prompt(self):
+    def build_memory_prompt(self, query=None):
 
-        memories = sorted(
-            self.memories,
-            key=lambda x: x.get(
-                "importance",
-                0
-            ),
-            reverse=True
-        )
+        if query:
+
+            memories = self.search_memory(query)
+
+        else:
+
+            memories = self.memories
 
         if not memories:
             return ""
@@ -124,3 +123,48 @@ class MemoryManager:
             )
 
         return text
+
+    def search_memory(self, query):
+
+        if not self.memories:
+            return []
+
+        stop_words = [
+            "我",
+            "你",
+            "的",
+            "是",
+            "了",
+            "吗",
+            "什么",
+            "怎么",
+            "一下",
+            "一下子",
+            "还"
+        ]
+
+        keywords = [
+            char
+            for char in query
+            if char not in stop_words
+        ]
+
+        results = []
+
+        for memory in self.memories:
+
+            content = memory["content"]
+
+            score = 0
+
+            for keyword in keywords:
+
+                if keyword in content:
+                    score += 1
+
+            if score >= 2:
+                results.append(
+                    memory
+                )
+
+        return results

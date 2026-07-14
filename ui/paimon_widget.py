@@ -306,7 +306,9 @@ class PaimonWidget(QWidget):
 
         messages = self.message_manager.get_messages()
 
-        memory_prompt = self.memory_manager.build_memory_prompt()
+        memory_prompt = self.memory_manager.build_memory_prompt(
+            text
+        )
 
         if memory_prompt:
             messages.insert(

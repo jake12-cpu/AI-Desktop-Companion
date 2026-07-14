@@ -6,11 +6,6 @@
     },
     {
         "type": "preference",
-        "content": "你还记得我喜欢玩什么游戏吗",
-        "time": "2026-07-14 23:40:18"
-    },
-    {
-        "type": "preference",
         "content": "我喜欢吃火锅",
         "time": "2026-07-15 00:15:47"
     },
@@ -19,5 +14,16 @@
         "content": "我喜欢阳光",
         "importance": 0.7,
         "time": "2026-07-15 00:23:13"
+    },
+    {
+        "type": "fact",
+        "content": "我使用Redmi G Pro电脑",
+        "importance": 0.9
+    },
+    {
+        "type": "fact",
+        "content": "派蒙还记得我用的是什么电脑吗",
+        "importance": 0.9,
+        "time": "2026-07-15 00:44:41"
     }
 ]
