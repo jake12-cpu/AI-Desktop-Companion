@@ -1,0 +1,23 @@
+[
+    {
+        "type": "preference",
+        "content": "我喜欢玩英雄联盟",
+        "time": "2026-07-14 23:39:47"
+    },
+    {
+        "type": "preference",
+        "content": "你还记得我喜欢玩什么游戏吗",
+        "time": "2026-07-14 23:40:18"
+    },
+    {
+        "type": "preference",
+        "content": "我喜欢吃火锅",
+        "time": "2026-07-15 00:15:47"
+    },
+    {
+        "type": "preference",
+        "content": "我喜欢阳光",
+        "importance": 0.7,
+        "time": "2026-07-15 00:23:13"
+    }
+]

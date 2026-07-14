@@ -5,13 +5,30 @@ class AIWorker(QThread):
 
     finished = Signal(str)
 
-    def __init__(self, client, message):
+    def __init__(self, client, messages):
         super().__init__()
 
         self.client = client
-        self.message = message
+        self.messages = messages
 
     def run(self):
-        reply = self.client.chat(self.message)
 
-        self.finished.emit(reply)
+        try:
+
+            reply = self.client.chat(
+                self.messages
+            )
+
+            self.finished.emit(reply)
+
+
+        except Exception as e:
+
+            self.finished.emit(
+                "派蒙暂时连接不上服务器了..."
+            )
+
+            print(
+                "AI错误:",
+                e
+            )

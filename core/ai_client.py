@@ -1,37 +1,91 @@
-import json
 from openai import OpenAI
 
 
 class AIClient:
 
-    def __init__(self):
+    def __init__(self, config_manager):
 
-        with open("config/config.json", "r", encoding="utf-8") as f:
-            config = json.load(f)
+        self.config_manager = config_manager
 
-        self.client = OpenAI(
-            api_key=config["api_key"],
-            base_url=config["base_url"]
+        self.api_key = config_manager.get(
+            "api_key"
         )
 
-        self.model = config["model"]
+        self.base_url = config_manager.get(
+            "base_url"
+        )
+
+        self.model = config_manager.get(
+            "model"
+        )
+
+        if self.api_key:
+
+            self.client = OpenAI(
+                api_key=self.api_key,
+                base_url=self.base_url
+            )
+
+        else:
+
+            self.client = None
+        self.config_manager.config_changed.connect(
+            self.update_config
+        )
         print("读取配置成功！")
-        print(config["base_url"])
+        print(self.base_url)
         print(self.model)
 
-    def chat(self, message):
-        response = self.client.chat.completions.create(
+    def update_config(self, key, value):
 
-            model=self.model,
+        if key == "api_key":
 
-            messages=[
-                {
-                    "role": "user",
-                    "content": message
-                }
-            ]
+            self.api_key = value
 
-        )
 
-        return response.choices[0].message.content
+        elif key == "base_url":
 
+            self.base_url = value
+
+            if self.api_key:
+
+                self.client = OpenAI(
+                    api_key=self.api_key,
+                    base_url=self.base_url
+                )
+
+            else:
+
+                self.client = None
+
+
+        elif key == "model":
+
+            self.model = value
+
+    def chat(self, messages):
+
+        if self.client is None:
+            return "旅行者，请先在设置中填写API Key哦~"
+
+        try:
+
+            response = self.client.chat.completions.create(
+
+                model=self.model,
+
+                messages=messages
+
+            )
+
+            return response.choices[0].message.content
+
+
+        except Exception as e:
+
+            print(
+                "AI请求失败:",
+                e
+            )
+
+            return "派蒙暂时连接不上服务器了，请检查模型配置哦！"
