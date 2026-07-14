@@ -32,7 +32,7 @@ class MemoryExtractor:
             memories.append(
                 {
                     "type": "preference",
-                    "content": self.clean_content(text),
+                    "content": text,
                     "importance": 0.7
                 }
             )

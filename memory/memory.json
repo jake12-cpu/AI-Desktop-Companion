@@ -1,29 +1,20 @@
 [
     {
         "type": "preference",
+        "content": "我特别喜欢吃火锅",
+        "importance": 0.8,
+        "base_importance": 0.7,
+        "created_time": "2026-07-15 02:34:49",
+        "last_used": "2026-07-15 02:39:37",
+        "used_count": 6
+    },
+    {
+        "type": "preference",
         "content": "我喜欢玩英雄联盟",
-        "time": "2026-07-14 23:39:47"
-    },
-    {
-        "type": "preference",
-        "content": "我喜欢吃火锅",
-        "time": "2026-07-15 00:15:47"
-    },
-    {
-        "type": "preference",
-        "content": "我喜欢阳光",
-        "importance": 0.7,
-        "time": "2026-07-15 00:23:13"
-    },
-    {
-        "type": "fact",
-        "content": "我使用Redmi G Pro电脑",
-        "importance": 0.9
-    },
-    {
-        "type": "fact",
-        "content": "派蒙还记得我用的是什么电脑吗",
-        "importance": 0.9,
-        "time": "2026-07-15 00:44:41"
+        "importance": 0.78,
+        "base_importance": 0.7,
+        "created_time": "2026-07-15 02:39:10",
+        "last_used": "2026-07-15 02:39:37",
+        "used_count": 5
     }
 ]

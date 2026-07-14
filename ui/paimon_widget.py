@@ -3,7 +3,14 @@ import os
 
 from PySide6.QtCore import QPoint, QPropertyAnimation, QTimer, Qt
 from PySide6.QtGui import QColor, QPixmap
-from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QLineEdit, QWidget
+from PySide6.QtWidgets import (
+    QGraphicsDropShadowEffect,
+    QLabel,
+    QLineEdit,
+    QWidget,
+    QPushButton
+)
+from torch._C import layout
 
 from core.ai_worker import AIWorker
 from core.image_manager import ImageManager
@@ -16,6 +23,9 @@ from core.character_manager import CharacterManager
 from core.character_menu import CharacterMenu
 from ui.settings_window import SettingsWindow
 from core.memory_extractor import MemoryExtractor
+from core.memory_validator import MemoryValidator
+from core.memory_consolidator import MemoryConsolidator
+from ui.memory_panel import MemoryPanel
 
 class PaimonWidget(QWidget):
     FRAME_INTERVAL_MS = 150
@@ -47,6 +57,7 @@ class PaimonWidget(QWidget):
 
         self._init_runtime_state()
         self._init_managers()
+        self.memory_panel = None
         self._init_window()
         self._init_widgets()
         self._init_animations()
@@ -105,7 +116,15 @@ class PaimonWidget(QWidget):
 
         self.memory_extractor = MemoryExtractor()
 
-        self.memory_manager = MemoryManager()
+        self.memory_validator = MemoryValidator()
+
+        self.memory_consolidator = MemoryConsolidator(
+            self.client
+        )
+
+        self.memory_manager = MemoryManager(
+            self.memory_consolidator
+        )
     def update_character_image(self, pixmap):
 
         if pixmap:
@@ -203,6 +222,24 @@ class PaimonWidget(QWidget):
         self.input_box.resize(220, 28)
         self.input_box.returnPressed.connect(self.show_message)
         self.input_box.hide()
+        self.memory_button = QPushButton(
+            "🧠 查看记忆",
+            self
+        )
+
+        self.memory_button.clicked.connect(
+            self.show_memory_panel
+        )
+
+        self.memory_button.resize(
+            100,
+            30
+        )
+
+        self.memory_button.move(
+            250,
+            self.height() - 60
+        )
 
     def _init_animations(self):
         self.bubble_animation = QPropertyAnimation(self.message_label, b"pos")
@@ -275,9 +312,11 @@ class PaimonWidget(QWidget):
         memories = self.memory_extractor.extract(text)
 
         for memory in memories:
-            self.memory_manager.add_memory(
-                memory
-            )
+
+            if self.memory_validator.validate(memory):
+                self.memory_manager.add_memory(
+                    memory
+                )
 
         self.message_label.setText("派蒙思考中...")
         self.message_label.adjustSize()
@@ -465,3 +504,11 @@ class PaimonWidget(QWidget):
 
         self.settings_window.show()
 
+    def show_memory_panel(self):
+
+        if self.memory_panel is None:
+            self.memory_panel = MemoryPanel(
+                self.memory_manager
+            )
+
+        self.memory_panel.show()
