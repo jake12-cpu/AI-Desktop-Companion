@@ -1,6 +1,8 @@
 # AI Desktop Companion 🧠✨
-一个基于 LLM Agent 架构的智能桌面陪伴系统，
-实现角色人格控制、长期记忆管理和自然语言交互。
+![Python](https://img.shields.io/badge/Python-3.13-blue)
+![PySide6](https://img.shields.io/badge/PySide6-GUI-green)
+![LLM](https://img.shields.io/badge/LLM-Agent-orange)
+
 # Demo
 
 ## Desktop Companion
@@ -25,8 +27,14 @@
 
 ---
 
-# ✨ Features
-## Architecture
+# 🔮 Future Plans
+
+- 使用向量数据库优化长期记忆检索
+- 引入 RAG 实现知识增强
+- 增加语音输入输出能力
+- 增加视觉感知模块
+- 支持更加复杂的 Agent Workflow
+- 扩展更多角色配置
 
 
 ```mermaid
@@ -54,7 +62,9 @@ B --> J[Character System]
 
 J --> K[Animation Player]
 
+```markdown
 J --> L[Character Config]
+
 
 
 ## 🤖 LLM智能对话
@@ -113,6 +123,8 @@ J --> L[Character Config]
 - 对话气泡动画
 - 打字机效果
 
+## Architecture
+
 
 ## 🗂 Memory Panel
 
@@ -137,12 +149,36 @@ J --> L[Character Config]
 | DeepSeek API | LLM能力 |
 | OpenAI SDK | 模型接口调用 |
 | JSON | 数据存储 |
+| Prompt Engineering | 角色人格控制 |
+| Agent Memory | 长期记忆系统设计 |
 | Git | 版本管理 |
 
 
 ---
 
 # 📁 Project Structure
+AI_companion
+│
+├── main.py                 # 程序入口
+│
+├── core                   # 核心逻辑
+│   ├── ai_client.py       # LLM接口
+│   ├── ai_worker.py       # 异步任务
+│   ├── memory_manager.py  # 长期记忆管理
+│   ├── memory_extractor.py# 记忆提取
+│   ├── message_manager.py # 对话管理
+│   └── animation_player.py
+│
+├── ui                     # UI模块
+│   ├── paimon_widget.py
+│   └── memory_panel.py
+│
+├── characters             # 角色资源
+│
+├── config
+│   └── config.example.json
+│
+└── requirements.txt
 
 
 
@@ -157,6 +193,8 @@ J --> L[Character Config]
 ```bash
 pip install -r requirements.txt
 2. Configure API
+```bash
+pip install -r requirements.txt
 
 复制：
 
