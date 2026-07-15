@@ -1,5 +1,21 @@
 # AI Desktop Companion 🧠✨
+一个基于 LLM Agent 架构的智能桌面陪伴系统，
+实现角色人格控制、长期记忆管理和自然语言交互。
+# Demo
 
+## Desktop Companion
+
+![Interactive](assets/demo_interactive.png)
+
+
+## Memory System
+
+![Memory](assets/demo_memory.png)
+
+
+## Memory Panel
+
+![Panel](assets/demo_panel.png)
 基于大语言模型（LLM）的智能桌面陪伴系统。
 
 本项目使用 Python + PySide6 构建桌面 AI Companion，实现了角色人格控制、多角色切换、长期记忆管理以及自然语言交互。
@@ -140,18 +156,3 @@ python main.py
 AI Agent Memory 架构
 人机交互系统设计
 桌面端 AI 应用开发
-# Demo
-
-## Desktop Companion
-
-![Chat](assets/demo_chat.png)
-
-
-## Memory System
-
-![Memory](assets/demo_memory.png)
-
-
-## Memory Panel
-
-![Panel](assets/demo_panel.png)
