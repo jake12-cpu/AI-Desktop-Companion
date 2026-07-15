@@ -26,6 +26,35 @@
 ---
 
 # ✨ Features
+## Architecture
+
+
+```mermaid
+graph TD
+
+A[User] --> B[PySide6 Desktop UI]
+
+B --> C[Message Manager]
+
+C --> D[Prompt Builder]
+
+D --> E[LLM API]
+
+E --> F[AI Response]
+
+
+C --> G[Memory System]
+
+G --> H[Memory Extractor]
+
+G --> I[Memory Retrieval]
+
+
+B --> J[Character System]
+
+J --> K[Animation Player]
+
+J --> L[Character Config]
 
 
 ## 🤖 LLM智能对话
