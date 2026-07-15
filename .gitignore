@@ -17,3 +17,9 @@ Thumbs.db
 
 # macOS
 .DS_Store
+
+# Private config
+config/config.json
+
+# User memory
+memory/memory.json
