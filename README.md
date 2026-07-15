@@ -140,3 +140,18 @@ python main.py
 AI Agent Memory 架构
 人机交互系统设计
 桌面端 AI 应用开发
+# Demo
+
+## Desktop Companion
+
+![Chat](assets/demo_chat.png)
+
+
+## Memory System
+
+![Memory](assets/demo_memory.png)
+
+
+## Memory Panel
+
+![Panel](assets/demo_panel.png)
