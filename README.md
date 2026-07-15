@@ -1,9 +1,38 @@
 # AI Desktop Companion 🧠✨
+
 ![Python](https://img.shields.io/badge/Python-3.13-blue)
 ![PySide6](https://img.shields.io/badge/PySide6-GUI-green)
 ![LLM](https://img.shields.io/badge/LLM-Agent-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+
+## Introduction
+
+AI Desktop Companion 是一个基于 **LLM Agent 架构**的智能桌面陪伴系统。
+
+项目使用 Python + PySide6 构建桌面 AI 应用，
+接入大语言模型，实现：
+
+- 角色人格控制
+- 多轮自然语言交互
+- 长期记忆管理
+- 个性化对话增强
+- 桌面角色动画交互
+
+
+系统通过 Memory Pipeline 自动提取用户信息，
+结合记忆检索增强后续对话，使 AI 角色能够持续了解用户偏好。
+
+
+---
 
 # Demo
+
+
+## AI Companion Demo
+
+![Demo](assets/demo.gif)
+
 
 ## Desktop Companion
 
@@ -18,23 +47,122 @@
 ## Memory Panel
 
 ![Panel](assets/demo_panel.png)
-基于大语言模型（LLM）的智能桌面陪伴系统。
 
-本项目使用 Python + PySide6 构建桌面 AI Companion，实现了角色人格控制、多角色切换、长期记忆管理以及自然语言交互。
-
-用户可以与桌面角色进行实时对话，系统能够自动提取用户信息并通过记忆检索增强后续对话，实现更加个性化的 AI 陪伴体验。
 
 
 ---
 
-# 🔮 Future Plans
+# ✨ Features
 
-- 使用向量数据库优化长期记忆检索
-- 引入 RAG 实现知识增强
-- 增加语音输入输出能力
-- 增加视觉感知模块
-- 支持更加复杂的 Agent Workflow
-- 扩展更多角色配置
+
+## 🤖 LLM Intelligent Conversation
+
+实现基于大语言模型的智能对话：
+
+- 接入 DeepSeek LLM API
+- 支持上下文连续对话
+- 基于 System Prompt 实现角色人格控制
+- 使用 QThread 实现异步请求
+- 避免 GUI 阻塞
+
+
+---
+
+## 🧠 Agent Memory System
+
+实现 AI Agent 长期记忆 Pipeline：
+
+
+用户输入
+
+↓
+
+Memory Extraction
+
+↓
+
+Memory Validation
+
+↓
+
+Memory Storage
+
+↓
+
+Memory Retrieval
+
+↓
+
+Prompt Augmentation
+
+
+支持：
+
+- 自动提取用户偏好信息
+- 记忆重要程度评分
+- 使用次数统计
+- 相似信息合并
+- 根据当前问题检索相关记忆
+
+
+---
+
+## 🎭 Multi Character System
+
+
+支持多个 AI 角色：
+
+目前：
+
+- 派蒙
+- 胡桃
+
+
+每个角色拥有独立配置：
+
+- Personality
+- System Prompt
+- Idle Messages
+- Animation Resources
+
+
+通过配置文件实现角色扩展。
+
+
+---
+
+## 🎨 Desktop Interaction System
+
+
+实现：
+
+- 无边框透明窗口
+- 桌面悬浮角色
+- 鼠标拖动
+- 呼吸动画
+- 表情状态切换
+- 思考动画
+- 对话气泡动画
+- 打字机效果
+
+
+---
+
+## 🗂 Memory Panel
+
+
+提供可视化记忆管理：
+
+- 查看长期记忆
+- 编辑记忆
+- 删除记忆
+- 搜索记忆
+- 查看记忆强度
+
+
+---
+
+# 🏗 Architecture
 
 
 ```mermaid
@@ -55,86 +183,18 @@ C --> G[Memory System]
 
 G --> H[Memory Extractor]
 
-G --> I[Memory Retrieval]
+G --> I[Memory Validator]
+
+G --> J[Memory Retrieval]
 
 
-B --> J[Character System]
+B --> K[Character System]
 
-J --> K[Animation Player]
+K --> L[Animation Player]
 
-```markdown
-J --> L[Character Config]
+K --> M[Character Config]
+```
 
-
-
-## 🤖 LLM智能对话
-
-- 接入 DeepSeek 大语言模型 API
-- 支持上下文连续对话
-- 基于 System Prompt 实现角色人格控制
-- 使用 QThread 实现异步请求，避免阻塞 GUI
-
-
-## 🧠 长期记忆系统
-
-实现 AI Agent Memory Pipeline：
-
-
-支持：
-
-- 自动提取用户偏好信息
-- 记忆重要程度评分
-- 记忆使用次数统计
-- 相似信息合并整理
-- 根据当前问题检索相关记忆
-
-
-## 🎭 多角色人格系统
-
-支持多个 AI 角色：
-
-目前：
-
-- 派蒙
-- 胡桃
-
-
-每个角色拥有独立配置：
-
-
-角色配置包含：
-
-- 人格设定
-- System Prompt
-- 闲聊内容
-- 动画资源
-
-
-## 🎨 桌面交互系统
-
-实现：
-
-- 桌面悬浮窗口
-- 无边框透明窗口
-- 角色拖动
-- 呼吸动画
-- 表情状态切换
-- 思考状态动画
-- 对话气泡动画
-- 打字机效果
-
-## Architecture
-
-
-## 🗂 Memory Panel
-
-提供可视化记忆管理：
-
-- 查看长期记忆
-- 删除记忆
-- 编辑记忆
-- 搜索记忆
-- 查看记忆强度
 
 
 ---
@@ -145,40 +205,59 @@ J --> L[Character Config]
 | 技术 | 用途 |
 |-|-|
 | Python | 核心开发语言 |
-| PySide6 | GUI框架 |
+| PySide6 | Desktop GUI |
 | DeepSeek API | LLM能力 |
-| OpenAI SDK | 模型接口调用 |
+| OpenAI SDK | 模型接口封装 |
 | JSON | 数据存储 |
+| QThread | 异步任务处理 |
 | Prompt Engineering | 角色人格控制 |
-| Agent Memory | 长期记忆系统设计 |
-| Git | 版本管理 |
+| Agent Memory | 长期记忆架构 |
+| Git | 项目版本管理 |
+
 
 
 ---
 
 # 📁 Project Structure
+
+
+```
 AI_companion
+
+├── main.py
+
+├── core
 │
-├── main.py                 # 程序入口
-│
-├── core                   # 核心逻辑
-│   ├── ai_client.py       # LLM接口
-│   ├── ai_worker.py       # 异步任务
-│   ├── memory_manager.py  # 长期记忆管理
-│   ├── memory_extractor.py# 记忆提取
-│   ├── message_manager.py # 对话管理
-│   └── animation_player.py
-│
-├── ui                     # UI模块
-│   ├── paimon_widget.py
-│   └── memory_panel.py
-│
-├── characters             # 角色资源
-│
+├── ai_client.py
+├── ai_worker.py
+├── memory_manager.py
+├── memory_extractor.py
+├── memory_validator.py
+├── memory_consolidator.py
+├── message_manager.py
+├── character_manager.py
+└── animation_player.py
+
+
+├── ui
+
+├── paimon_widget.py
+└── memory_panel.py
+
+
+├── characters
+
+├── paimon
+└── hutao
+
+
 ├── config
-│   └── config.example.json
-│
+
+└── config.example.json
+
+
 └── requirements.txt
+```
 
 
 
@@ -192,34 +271,62 @@ AI_companion
 
 ```bash
 pip install -r requirements.txt
-2. Configure API
-```bash
-pip install -r requirements.txt
+```
+
+
+## 2. Configure API
+
 
 复制：
 
+```
 config/config.example.json
+```
+
 
 重命名：
 
+```
 config/config.json
+```
+
 
 填写 DeepSeek API Key。
 
-3. Run
+
+## 3. Run
+
+
+```bash
 python main.py
-🔮 Future Plans
- 向量数据库增强记忆检索
- RAG知识增强
- 语音输入输出
- AI视觉感知
- 更复杂 Agent 工作流
- 更多角色支持
-📌 Project Highlights
+```
+
+
+
+---
+
+# 🔮 Future Plans
+
+
+- 使用向量数据库优化长期记忆检索
+- 引入 RAG 知识增强
+- 增加语音输入输出
+- 增加 AI 视觉感知
+- 支持更加复杂 Agent Workflow
+- 扩展更多角色配置
+
+
+
+---
+
+# 📌 Project Highlights
+
 
 本项目主要探索：
 
-大语言模型应用开发
-AI Agent Memory 架构
-人机交互系统设计
-桌面端 AI 应用开发
+- 大语言模型应用开发
+- AI Agent Memory 架构设计
+- Prompt Engineering
+- 人机交互系统设计
+- 桌面端 AI 应用开发
+
